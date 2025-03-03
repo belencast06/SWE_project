@@ -73,6 +73,7 @@ end
 
   # Defines the root path route ("/")
 
+
  end
 
   root 'home#index'
