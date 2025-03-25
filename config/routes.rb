@@ -1,15 +1,15 @@
 Rails.application.routes.draw do
-  get "sessions/new"
-  get "sessions/create"
-  get "sessions/destroy"
-
-  get "/signup", to: "users#new"
-  post "/signup", to: "users#create"
-  root "sessions#new"  # Default to login page
-  get "/login", to: "sessions#new"
-  post "/login", to: "sessions#create"
-  delete "/logout", to: "sessions#destroy"
+  # Root route (default to login page)
+  root "sessions#new"
   
+  # Login routes
+  get "/login", to: "sessions#new"        # Show the login form
+  post "/login", to: "sessions#create"     # Handle form submission (create session)
+  
+  # Logout route
+  delete "/logout", to: "sessions#destroy" # Logout (destroy session)
+  
+  # Home page route (only accessible when logged in)
   get "/home", to: "home#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -22,4 +22,4 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   # Defines the root path route ("/")
-end
+ end
