@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   post "/login", to: "sessions#create"     # Handle form submission (create session)
   
   # Logout route
-  delete "/logout", to: "sessions#destroy" # Logout (destroy session)
+  delete "/logout", to: "sessions#destroy", as: "logout" # Logout (destroy session)
   
   # Home page route (only accessible when logged in)
   get "/home", to: "home#index"
