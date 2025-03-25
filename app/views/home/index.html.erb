@@ -1,4 +1,70 @@
-<h1>Home#index</h1>
+<h1>Welcome, <%= session[:user]["email"] if session[:user] %>!</h1>
+<%= link_to "Logout", logout_path, method: :delete, class: "logout-button" %>
 
-<h1>This is going to redirect to a login page if not logged in</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<div class="content-container">
+  <div class="column">
+    <h2>Lessons</h2>
+    <ul>
+      <li><%= link_to "Lesson 1", "#" %></li>
+      <li><%= link_to "Lesson 2", "#" %></li>
+      <li><%= link_to "Lesson 3", "#" %></li>
+      <!-- Add more lesson links as needed -->
+    </ul>
+  </div>
+
+  <div class="column">
+    <h2>Forum</h2>
+    <ul>
+      <li><%= link_to "General Discussion", "#" %></li>
+      <li><%= link_to "Help & Support", "#" %></li>
+      <li><%= link_to "Off-Topic", "#" %></li>
+      <!-- Add more forum links as needed -->
+    </ul>
+  </div>
+</div>
+
+<style>
+  .logout-button {
+    display: block;
+    margin-bottom: 20px;
+    color: white;
+    background-color: red;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    width: fit-content;
+  }
+
+  .content-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+
+  .column {
+    width: 40%;
+    text-align: center;
+    background: #f4f4f4;
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+  .column ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .column ul li {
+    margin: 10px 0;
+  }
+
+  .column ul li a {
+    text-decoration: none;
+    color: #007BFF;
+    font-weight: bold;
+  }
+
+  .column ul li a:hover {
+    text-decoration: underline;
+  }
+</style>
