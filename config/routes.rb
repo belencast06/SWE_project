@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   get "assessment_pages/show"
 
   get "forum_posts/index"
@@ -7,7 +8,9 @@ Rails.application.routes.draw do
   get "forum_posts/new"
   get "forum_posts/create"
 
+
   get "content_pages/show"
+
   get "lessons/index"
   get "lessons/show"
   # signup route
