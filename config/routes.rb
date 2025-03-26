@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
+
   get "forum_posts/index"
   get "forum_posts/show"
   get "forum_posts/new"
   get "forum_posts/create"
+
+
+
   get "content_pages/show"
   get "lessons/index"
   get "lessons/show"
