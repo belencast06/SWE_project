@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "content_pages/show"
   get "lessons/index"
   get "lessons/show"
   # Root route (default to login page)
@@ -16,6 +17,9 @@ Rails.application.routes.draw do
  # LessonS routes
  get "/lessons/:id", to: "lessons#show", as: "lesson"
  resources :lessons, only: [:index, :show]
+
+ # Routes for content pages
+  resources :content_pages, only: [:show]
 
  root 'home#index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

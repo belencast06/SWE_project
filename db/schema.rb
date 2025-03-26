@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_26_023351) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_26_033618) do
+  create_table "content_pages", force: :cascade do |t|
+    t.string "title"
+    t.text "body"
+    t.integer "lesson_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lesson_id"], name: "index_content_pages_on_lesson_id"
+  end
+
   create_table "lessons", force: :cascade do |t|
     t.string "title"
     t.text "content"
@@ -24,4 +33,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_26_023351) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_foreign_key "content_pages", "lessons"
 end
