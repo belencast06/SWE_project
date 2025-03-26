@@ -7,3 +7,7 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+#   
+Lesson.create(title: "Lesson 1", content: "This is lesson 1 content.")
+Lesson.create(title: "Lesson 2", content: "This is lesson 2 content.")
+Lesson.create(title: "Lesson 3", content: "This is lesson 3 content.")

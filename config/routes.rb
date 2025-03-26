@@ -29,9 +29,4 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   # Defines the root path route ("/")
-<<<<<<< HEAD
  end
-=======
-  root 'home#index'
-end
->>>>>>> c87cf15 (The home page is set to something we can pull up)
