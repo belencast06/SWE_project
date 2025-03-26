@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   root 'home#index'
 
  # Other routes (home page, etc.)
- get '/home', to: 'home#index', as: 'home'
+  get '/home', to: 'home#index', as: 'home'
   # Lessons routes
   resources :lessons, only: [:index, :show] do
     resources :content_pages, only: [:show] # Nested content pages under lessons
