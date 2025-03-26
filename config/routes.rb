@@ -1,5 +1,25 @@
 Rails.application.routes.draw do
 
+  get "forum_posts/index"
+  get "forum_posts/show"
+  get "forum_posts/new"
+  get "forum_posts/create"
+
+
+
+  get "content_pages/show"
+  get "lessons/index"
+  get "lessons/show"
+  # signup route
+  get '/signup', to: 'users#new', as: 'signup'
+  # Root route (default to login page)
+ 
+  # Login routes
+  get '/login', to: 'sessions#new', as: 'login'
+  post '/login', to: 'sessions#create'
+  get "/logout", to: "sessions#destroy", as: '/logout'
+
+
   # Home Page
   get '/home', to: 'home#index', as: 'home'
   root 'home#index'
