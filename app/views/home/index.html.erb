@@ -5,10 +5,9 @@
   <div class="column">
     <h2>Lessons</h2>
     <ul>
-      <li><%= link_to "Lesson 1", "#" %></li>
-      <li><%= link_to "Lesson 2", "#" %></li>
-      <li><%= link_to "Lesson 3", "#" %></li>
-      <!-- Add more lesson links as needed -->
+      <% Lesson.all.each do |lesson| %>
+        <li><%= link_to lesson.title, lesson_path(lesson) %></li>
+      <% end %>
     </ul>
   </div>
 
@@ -18,10 +17,10 @@
       <li><%= link_to "General Discussion", "#" %></li>
       <li><%= link_to "Help & Support", "#" %></li>
       <li><%= link_to "Off-Topic", "#" %></li>
-      <!-- Add more forum links as needed -->
     </ul>
   </div>
 </div>
+
 
 <style>
   .logout-button {
