@@ -6,7 +6,6 @@ class LessonsController < ApplicationController
   }
 
   def show
-    @lesson_title = params[:id].humanize
-    @lesson_content = LESSONS[params[:id]] || "Lesson not found."
+    @lesson = Lesson.find(params[:id])  # This fetches a lesson by its ID
   end
 end
