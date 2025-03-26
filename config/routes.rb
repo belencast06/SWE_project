@@ -32,7 +32,6 @@ Rails.application.routes.draw do
   end
 
  # LessonS routes
- get "/lessons/:id", to: "lessons#show", as: "lesson"
  resources :lessons, only: [:index, :show]
 
  # Routes for content pages
