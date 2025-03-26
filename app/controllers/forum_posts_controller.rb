@@ -1,5 +1,5 @@
 class ForumPostsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :ensure_logged_in, except: [:index, :show]
   
   def index
     @category = params[:category] || 'general'
@@ -34,6 +34,14 @@ class ForumPostsController < ApplicationController
   
   private
   
+  before_action :ensure_logged_in, except: [:index, :show]
+
+private
+
+  def ensure_logged_in
+    redirect_to login_path, alert: "You must be logged in to create posts" unless logged_in?
+  end
+
   def forum_post_params
     params.require(:forum_post).permit(:title, :content, :category)
   end

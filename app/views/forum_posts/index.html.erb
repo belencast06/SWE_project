@@ -3,6 +3,7 @@
   
   <div class="mb-3">
     <%= link_to "Create New Post", new_forum_post_path(category: @category), class: "btn btn-primary" %>
+    <%= link_to "Back to Home", home_path, class: "btn btn-secondary" %>
   </div>
   
   <% if @posts.any? %>
