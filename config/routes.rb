@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
+<<<<<<< HEAD
   get "content_pages/show"
+=======
+>>>>>>> 923620a (linking lesson links to lesson pages)
   get "lessons/index"
   get "lessons/show"
   # Root route (default to login page)
