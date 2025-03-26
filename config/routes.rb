@@ -1,7 +1,19 @@
 Rails.application.routes.draw do
+
   # Home Page
   get '/home', to: 'home#index', as: 'home'
   root 'home#index'
+
+  get "content_pages/show"
+
+  get "lessons/index"
+  get "lessons/show"
+  # Root route (default to login page)
+ # Login routes
+ get '/login', to: 'sessions#new', as: 'login'
+ post '/login', to: 'sessions#create'
+ get "/logout", to: "sessions#destroy", as: '/logout'
+
 
   # Login routes
   get '/login', to: 'sessions#new', as: 'login'
