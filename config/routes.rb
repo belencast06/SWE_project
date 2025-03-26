@@ -16,11 +16,14 @@ Rails.application.routes.draw do
   get "content_pages/show"
   get "lessons/index"
   get "lessons/show"
+  # signup route
+  get '/signup', to: 'users#new', as: 'signup'
   # Root route (default to login page)
- # Login routes
- get '/login', to: 'sessions#new', as: 'login'
- post '/login', to: 'sessions#create'
- get "/logout", to: "sessions#destroy", as: '/logout'
+ 
+  # Login routes
+  get '/login', to: 'sessions#new', as: 'login'
+  post '/login', to: 'sessions#create'
+  get "/logout", to: "sessions#destroy", as: '/logout'
 
   # Home Page
   get '/home', to: 'home#index', as: 'home'
@@ -43,7 +46,7 @@ get 'forum/off_topic', to: 'forum_posts#index', defaults: { category: 'offtopic'
 
 resources :forum_posts
 
- root 'home#index'
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
