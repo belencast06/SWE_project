@@ -1,0 +1,46 @@
+<h1><%= @assessment_page.title %></h1>
+<p><%= @assessment_page.content %></p>
+<%= link_to "Back to Lesson", lesson_path(@lesson) %>
+
+
+<!-- Terminal Container -->
+<div id="terminal-container" style="width: 80%; height: 300px; border: 1px solid black; z-index: 100; position: relative;"></div>
+
+<%= yield %>
+
+<!-- Include the xterm script -->
+<script src="https://cdn.jsdelivr.net/npm/xterm@5.3.0/lib/xterm.min.js"></script>
+
+<script>
+document.addEventListener("turbo:load", function() {
+    const terminalContainer = document.getElementById('terminal-container');
+    
+    // Initialize terminal with custom configuration
+    const terminal = new Terminal({
+        cols: 80,  // Set number of columns
+        rows: 24,  // Set number of rows
+        cursorBlink: true,  // Enable cursor blinking
+        theme: {
+            background: '#1e1e1e',  // Set background color (dark theme)
+            foreground: '#d4d4d4',  // Set text color (light gray)
+            cursor: '#ffffff',      // Cursor color (white)
+            selectionBackground: '#4a4a4a' // Selection color (dark gray)
+        }
+    });
+    
+    // Open the terminal in the container
+    terminal.open(terminalContainer);
+    
+    // Write some content into the terminal
+    terminal.write('Welcome to the terminal!\r\n');
+    terminal.write('This is where the content will be displayed.\r\n');
+    });
+    if (!sessionStorage.getItem("pageReloaded")) {
+      // Mark that the page has been reloaded once
+      sessionStorage.setItem("pageReloaded", "true");
+
+      // Trigger a page reload
+      window.location.reload();
+    } 
+    else {;}
+</script>

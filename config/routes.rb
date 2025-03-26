@@ -1,18 +1,12 @@
 Rails.application.routes.draw do
-<<<<<<< HEAD
 
-=======
->>>>>>> e006ce2 (Basic forum pages)
+  get "assessment_pages/show"
+
   get "forum_posts/index"
   get "forum_posts/show"
   get "forum_posts/new"
   get "forum_posts/create"
-<<<<<<< HEAD
 
-
-
-=======
->>>>>>> e006ce2 (Basic forum pages)
   get "content_pages/show"
   get "lessons/index"
   get "lessons/show"
@@ -31,6 +25,11 @@ Rails.application.routes.draw do
 
  # Other routes (home page, etc.)
  get '/home', to: 'home#index', as: 'home'
+  # Lessons routes
+  resources :lessons, only: [:index, :show] do
+    resources :content_pages, only: [:show] # Nested content pages under lessons
+    resources :assessment_pages, only: [:show] # Should only be one assesment page in lesson
+  end
 
  # LessonS routes
  get "/lessons/:id", to: "lessons#show", as: "lesson"

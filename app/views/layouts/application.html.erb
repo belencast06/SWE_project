@@ -1,31 +1,37 @@
 <!DOCTYPE html>
 <html>
   <head>
-   <div> <% if logged_in? %>
-    <p>Welcome, <%= current_user.email %>!</p>
-      <%= link_to "logout", logout_path, method: :delete, data: { turbo: false }, class: "logout-button" %>
-      <% else %>
-        <%= link_to "Login", login_path %>
-        <%= link_to "Sign Up", signup_path %>
-     <% end %>
-    </div>
-
+    <!-- xterm CSS should be in the <head> section -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm@5.3.0/css/xterm.css" />
+    
     <%= yield :head %>
 
-    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
+    <!-- PWA manifest for installable apps -->
     <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
 
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
 
-    <%# Includes all stylesheet files in app/assets/stylesheets %>
+    <!-- Includes all stylesheet files in app/assets/stylesheets -->
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   </head>
 
   <body>
+    <!-- Move the login display into the body -->
+    <div>
+      <% if logged_in? %>
+        <p>Welcome, <%= current_user.email %>!</p>
+        <%= link_to "logout", logout_path, method: :delete, data: { turbo: false }, class: "logout-button" %>
+      <% else %>
+        <%= link_to "Login", login_path %>
+        <%= link_to "Sign Up", signup_path %>
+      <% end %>
+    </div>
+
+    <!-- Yield content for individual pages -->
     <%= yield %>
   </body>
 </html>

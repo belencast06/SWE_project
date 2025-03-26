@@ -1,4 +1,7 @@
 <h1><%= @content_page.title %></h1>
-<p><%= @content_page.body %></p>  <!-- Assume you have a body field in your ContentPage model -->
-<h2> Testing now for content</h2>
-<%= link_to "Back to Lesson Page", lesson_path(@content_page.lesson_id) %> 
+<p><%= @content_page.body %></p> <!-- Assume you have a body field in your ContentPage model -->
+
+<!-- Back to Lesson Page Link -->
+<%= link_to "Back to Lesson Page", lesson_path(@content_page.lesson_id) %>
+
+<h2>There will be content here</h2>

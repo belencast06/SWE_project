@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_26_042538) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_26_081857) do
+  create_table "assessment_pages", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.integer "lesson_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lesson_id"], name: "index_assessment_pages_on_lesson_id"
+  end
+
   create_table "content_pages", force: :cascade do |t|
     t.string "title"
     t.text "body"
@@ -44,6 +53,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_26_042538) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "assessment_pages", "lessons"
   add_foreign_key "content_pages", "lessons"
   add_foreign_key "forum_posts", "users"
 end
