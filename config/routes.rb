@@ -8,11 +8,14 @@ Rails.application.routes.draw do
 
   get "lessons/index"
   get "lessons/show"
+  # signup route
+  get '/signup', to: 'users#new', as: 'signup'
   # Root route (default to login page)
- # Login routes
- get '/login', to: 'sessions#new', as: 'login'
- post '/login', to: 'sessions#create'
- get "/logout", to: "sessions#destroy", as: '/logout'
+ 
+  # Login routes
+  get '/login', to: 'sessions#new', as: 'login'
+  post '/login', to: 'sessions#create'
+  get "/logout", to: "sessions#destroy", as: '/logout'
 
 
   # Login routes
