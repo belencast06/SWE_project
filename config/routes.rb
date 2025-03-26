@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   get "/logout", to: "sessions#destroy", as: '/logout'
 
   # Home Page
-  get '/home', to: 'home#index', as: 'home'
+
   root 'home#index'
 
  # Other routes (home page, etc.)
