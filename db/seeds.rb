@@ -8,6 +8,23 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 #   
-Lesson.create(title: "Lesson 1", content: "This is lesson 1 content.")
-Lesson.create(title: "Lesson 2", content: "This is lesson 2 content.")
-Lesson.create(title: "Lesson 3", content: "This is lesson 3 content.")
+# Clear existing data
+Lesson.destroy_all
+ContentPage.destroy_all
+
+# Create Lessons
+lesson1 = Lesson.create(title: "Lesson 1")
+lesson2 = Lesson.create(title: "Lesson 2")
+lesson3 = Lesson.create(title: "Lesson 3")
+
+# Create Content Pages for Each Lesson
+lesson1.content_pages.create(title: "Lesson 1 - Introduction", body: "This is the introduction to Lesson 1.")
+lesson1.content_pages.create(title: "Lesson 1 - Assesment", body: "This the assessment in Lesson 1.")
+
+lesson2.content_pages.create(title: "Lesson 2 - Introduction", body: "This is the introduction to Lesson 2.")
+lesson2.content_pages.create(title: "Lesson 2 - Assesment", body: "This is the assessment in Lesson 2.")
+
+lesson3.content_pages.create(title: "Lesson 3 - Introduction", body: "This is the introduction to Lesson 3.")
+lesson3.content_pages.create(title: "Lesson 3 - Assesment", body: "This is the assessment in Lesson 3.")
+
+puts "Seeded lessons and content pages!"

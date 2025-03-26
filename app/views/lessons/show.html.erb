@@ -1,11 +1,12 @@
+<%= link_to "logout", logout_path, method: :delete, data: { turbo: false }, class: "logout-button" %>
 <h1><%= @lesson.title %></h1>
 <p><%= @lesson.content %></p>
 
+
 <h3>Content Pages:</h3>
 <ul>
-  <% @lesson.content_pages.each do |content_page| %>  <!-- Assuming a lesson has many content pages -->
-    <li><%= link_to content_page.title, content_page_path(content_page) %></li>
+  <% @lesson.content_pages.each do |content_page| %>
+    <li><%= link_to content_page.title, lesson_content_page_path(@lesson, content_page) %></li>
   <% end %>
 </ul>
-
 <%= link_to "Back to Home", home_path %>

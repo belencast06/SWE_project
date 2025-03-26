@@ -16,8 +16,9 @@ Rails.application.routes.draw do
  post '/login', to: 'sessions#create'
  get "/logout", to: "sessions#destroy", as: '/logout'
 
- # Sign up route
- get '/signup', to: 'users#new', as: 'signup'
+  # Home Page
+  get '/home', to: 'home#index', as: 'home'
+  root 'home#index'
 
  # Other routes (home page, etc.)
  get '/home', to: 'home#index', as: 'home'
