@@ -1,16 +1,17 @@
 Rails.application.routes.draw do
   # Root route (default to login page)
-  root "sessions#new"
-  
-  # Login routes
-  get "/login", to: "sessions#new"        # Show the login form
-  post "/login", to: "sessions#create"     # Handle form submission (create session)
-  
-  # Logout route
-  delete "/logout", to: "sessions#destroy", as: "logout" # Logout (destroy session)
-  
-  # Home page route (only accessible when logged in)
-  get "/home", to: "home#index"
+ # Login routes
+ get '/login', to: 'sessions#new', as: 'login'
+ post '/login', to: 'sessions#create'
+ get "/logout", to: "sessions#destroy", as: '/logout'
+
+ # Sign up route
+ get '/signup', to: 'users#new', as: 'signup'
+
+ # Other routes (home page, etc.)
+ get '/home', to: 'home#index', as: 'home'
+
+ root 'home#index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

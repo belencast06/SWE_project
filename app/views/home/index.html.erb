@@ -1,3 +1,6 @@
+<h1>Welcome, <%= session[:user]["email"] if session[:user] %>!</h1>
+<%= link_to "logout", logout_path, method: :delete, data: { turbo: false }, class: "logout-button" %>
+
 <div class="content-container">
   <div class="column">
     <h2>Lessons</h2>
