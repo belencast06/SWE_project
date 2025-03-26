@@ -1,12 +1,18 @@
 Rails.application.routes.draw do
+<<<<<<< HEAD
 
+=======
+>>>>>>> e006ce2 (Basic forum pages)
   get "forum_posts/index"
   get "forum_posts/show"
   get "forum_posts/new"
   get "forum_posts/create"
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> e006ce2 (Basic forum pages)
   get "content_pages/show"
   get "lessons/index"
   get "lessons/show"
