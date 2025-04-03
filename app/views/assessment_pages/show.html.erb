@@ -15,6 +15,11 @@
 document.addEventListener("turbo:load", function() {
     const terminalContainer = document.getElementById('terminal-container');
     
+    // Checks if terminal already exists to prevent duplication
+    if (terminalContainer.getAttribute("data-terminal-initialized") === "true") {
+        return; // Exit if terminal already initialized
+    }
+    terminalContainer.setAttribute("data-terminal-initialized", "true");
     // Initialize terminal with custom configuration
     const terminal = new Terminal({
         cols: 80,  // Set number of columns
