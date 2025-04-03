@@ -43,4 +43,10 @@ document.addEventListener("turbo:load", function() {
       window.location.reload();
     } 
     else {;}
+
+    window.addEventListener("beforeunload", function () {
+    if (window.name === "RailsConsole") {
+      window.close();
+        }
+  });
 </script>

@@ -1,5 +1,4 @@
-<h1>Welcome, <%= session[:user]["email"] if session[:user] %>!</h1>
-<%= link_to "logout", logout_path, method: :delete, data: { turbo: false }, class: "logout-button" %>
+<h1>Welcome, <%= User.find(session[:user_id]).email if session[:user_id] %>!</h1>
 
 <div class="content-container">
   <div class="column">
