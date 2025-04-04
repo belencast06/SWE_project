@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  # Home Page
+  get '/home', to: 'home#index', as: 'home'
+  root 'home#index'
 
   get "forum_posts/index"
   get "forum_posts/show"
@@ -18,6 +21,9 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new', as: 'login'
   post '/login', to: 'sessions#create'
   get "/logout", to: "sessions#destroy", as: '/logout'
+  # Signup route
+  get '/signup', to: 'users#new', as: 'signup'
+  post '/signup', to: 'users#create'
 
 
   # Home Page
