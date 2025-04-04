@@ -1,50 +1,40 @@
 Rails.application.routes.draw do
+  # Home Page
+  get '/home', to: 'home#index', as: 'home'
+  root 'home#index'
 
-  get "assessment_pages/show"
-
-  get "forum_posts/index"
-  get "forum_posts/show"
-  get "forum_posts/new"
-  get "forum_posts/create"
-
-
-  get "content_pages/show"
-
-  get "lessons/index"
-  get "lessons/show"
-  # signup route
-  get '/signup', to: 'users#new', as: 'signup'
-  # Root route (default to login page)
- 
-  # Login routes
+   # Login routes
   get '/login', to: 'sessions#new', as: 'login'
   post '/login', to: 'sessions#create'
   get "/logout", to: "sessions#destroy", as: '/logout'
+  # Signup route
+  get '/signup', to: 'users#new', as: 'signup'
+  post '/signup', to: 'users#create'
 
-  # Home Page
+  resources :users, only: [:new, :create]
 
-  root 'home#index'
-
- # Other routes (home page, etc.)
-  get '/home', to: 'home#index', as: 'home'
-  # Lessons routes
+   # Lessons routes
   resources :lessons, only: [:index, :show] do
     resources :content_pages, only: [:show] # Nested content pages under lessons
     resources :assessment_pages, only: [:show] # Should only be one assesment page in lesson
   end
+  
+  # Forum Routes
+  get 'forum/general_discussion', to: 'forum_posts#index', defaults: { category: 'general' }, as: 'general_discussion'
+  get 'forum/help_support', to: 'forum_posts#index', defaults: { category: 'help' }, as: 'help_support'
+  get 'forum/off_topic', to: 'forum_posts#index', defaults: { category: 'offtopic' }, as: 'off_topic'
 
- # LessonS routes
- resources :lessons, only: [:index, :show]
+  resources :forum_posts
 
- # Routes for content pages
-  resources :content_pages, only: [:show]
+  get "assessment_pages/show"
+  get "forum_posts/index"
+  get "forum_posts/show"
+  get "forum_posts/new"
+  get "forum_posts/create"
+  get "content_pages/show"
+  get "lessons/index"
+  get "lessons/show"
 
-# Forum Routes
-get 'forum/general_discussion', to: 'forum_posts#index', defaults: { category: 'general' }, as: 'general_discussion'
-get 'forum/help_support', to: 'forum_posts#index', defaults: { category: 'help' }, as: 'help_support'
-get 'forum/off_topic', to: 'forum_posts#index', defaults: { category: 'offtopic' }, as: 'off_topic'
-
-resources :forum_posts
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
