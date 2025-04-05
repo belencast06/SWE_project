@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   get "lessons/show"
   # signup route
   get '/signup', to: 'users#new', as: 'signup'
+  post '/signup', to: 'users#create'
+
   # Root route (default to login page)
  
   # Login routes
