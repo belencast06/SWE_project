@@ -3,7 +3,29 @@ Rails.application.routes.draw do
   get '/home', to: 'home#index', as: 'home'
   root 'home#index'
 
+<<<<<<< HEAD
    # Login routes
+=======
+  get "assessment_pages/show"
+
+  get "forum_posts/index"
+  get "forum_posts/show"
+  get "forum_posts/new"
+  get "forum_posts/create"
+
+
+  get "content_pages/show"
+
+  get "lessons/index"
+  get "lessons/show"
+  # signup route
+  get '/signup', to: 'users#new', as: 'signup'
+  post '/signup', to: 'users#create'
+
+  # Root route (default to login page)
+ 
+  # Login routes
+>>>>>>> 195cb9a (fixed nav bar depending on user logged in or not)
   get '/login', to: 'sessions#new', as: 'login'
   post '/login', to: 'sessions#create'
   get "/logout", to: "sessions#destroy", as: '/logout'
