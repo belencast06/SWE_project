@@ -64,6 +64,7 @@ Scenario: Cannot edit another user's post
   And I click on the "Off-Topic" link
   Then I should not see an "Edit" link for "Another User's Post"
   
+
   
 Scenario: Search for posts across all categories
   Given I am a logged in user
