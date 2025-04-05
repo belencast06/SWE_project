@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get '/home', to: 'home#index', as: 'home'
   root 'home#index'
 
+
   get "forum_posts/index"
   get "forum_posts/show"
   get "forum_posts/new"
