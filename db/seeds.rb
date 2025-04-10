@@ -7,30 +7,46 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-#   
 # Clear existing data
 Lesson.destroy_all
 ContentPage.destroy_all
 AssessmentPage.destroy_all
 
-# Create Lessons
-lesson1 = Lesson.create(title: "Lesson 1")
-lesson2 = Lesson.create(title: "Lesson 2")
-lesson3 = Lesson.create(title: "Lesson 3")
+# Clear existing data
+Lesson.destroy_all
+ContentPage.destroy_all
+AssessmentPage.destroy_all
 
-# Create Content Pages for Each Lesson
-lesson1.content_pages.create(title: "Lesson 1 - Introduction", body: "This is the introduction to Lesson 1.")
-lesson1.content_pages.create(title: "Lesson 1 - Page 1", body: "This is Page 1 in Lesson 1.")
+# Create 10 named lessons with content and assessments
+lesson_titles = [
+  "Intro to C++",
+  "Variables",
+  "Expressions",
+  "Conditionals",
+  "Loops",
+  "Functions",
+  "Classes",
+  "Arrays",
+  "Vectors",
+  "Pointers"
+]
 
-lesson2.content_pages.create(title: "Lesson 2 - Introduction", body: "This is the introduction to Lesson 2.")
-lesson2.content_pages.create(title: "Lesson 2 - Page 1", body: "This is Page 1 in Lesson 2.")
+lesson_titles.each do |title|
+  lesson = Lesson.create!(title: title)
+  # Add content pages
+  lesson.content_pages.create!(
+    title: "#{title} - Introduction",
+    body: "This is the introduction to #{title}."
+  )
+  lesson.content_pages.create!(
+    title: "#{title} - Page 1",
+    body: "This is Page 1 in #{title}."
+  )
 
-lesson3.content_pages.create(title: "Lesson 3 - Introduction", body: "This is the introduction to Lesson 3.")
-lesson3.content_pages.create(title: "Lesson 3 - Page 1", body: "This is Page 1 in Lesson 3.")
-
-# Create assessment pages for each lesson
-lesson1.assessment_pages.create(title: "Lesson 1 - Assessment", content: "This is the assessment for Lesson 1.")
-lesson2.assessment_pages.create(title: "Lesson 2 - Assessment", content: "This is the assessment for Lesson 2.")
-lesson3.assessment_pages.create(title: "Lesson 3 - Assessment", content: "This is the assessment for Lesson 3.")
-
-puts "Seeded lessons and content pages!"
+  # Add an assessment page
+  lesson.assessment_pages.create!(
+    title: "#{title} - Assessment",
+    content: "This is the assessment for #{title}."
+  )
+end
+puts "Seeded 10 lessons with consistent naming and content!"

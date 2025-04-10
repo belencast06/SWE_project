@@ -1,10 +1,10 @@
-<h1><%= @assessment_page.title %></h1>
-<p><%= @assessment_page.content %></p>
-<%= link_to "Back to Lesson", lesson_path(@lesson) %>
+<div style="background-color: rgb(187, 197, 194); min-height: 100vh; padding: 20px;">
+  <h1><%= @assessment_page.title %></h1>
+  <p><%= @assessment_page.content %></p>
+  <%= link_to "Back to Lesson", lesson_path(@lesson) %>
 
-
-<!-- Terminal Container -->
-<div id="terminal-container" style="width: 80%; height: 300px; border: 1px solid black; z-index: 100; position: relative;"></div>
+  <div id="terminal-container" style="width: 80%; height: 300px; border: 1px solid black; z-index: 100; position: relative;"></div>
+</div>
 
 <%= yield %>
 

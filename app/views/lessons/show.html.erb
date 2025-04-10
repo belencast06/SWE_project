@@ -1,15 +1,14 @@
-<h1><%= @lesson.title %></h1>
-<p><%= @lesson.content %></p>
+<div style="background-color: rgb(187, 197, 194); min-height: 100vh; padding: 20px;">
+  <h1><%= @lesson.title %></h1>
+  <p><%= @lesson.content %></p>
 
-
-<h3>Content Pages:</h3>
-<ul>
-  <% @lesson.content_pages.each do |content_page| %>
-    <li><%= link_to content_page.title, lesson_content_page_path(@lesson, content_page) %></li>
-  <% end %>
-  <% @lesson.assessment_pages.each do |assessment_page| %>
-    <li><%= link_to assessment_page.title, lesson_assessment_page_path(@lesson, assessment_page) %></li>
-  <% end %>
-
-
-</ul>
+  <h3>Content Pages:</h3>
+  <ul>
+    <% @lesson.content_pages.each do |content_page| %>
+      <li><%= link_to content_page.title, lesson_content_page_path(@lesson, content_page) %></li>
+    <% end %>
+    <% @lesson.assessment_pages.each do |assessment_page| %>
+      <li><%= link_to assessment_page.title, lesson_assessment_page_path(@lesson, assessment_page) %></li>
+    <% end %>
+  </ul>
+</div>

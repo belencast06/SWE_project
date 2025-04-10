@@ -1,12 +1,14 @@
+<div style="background-color: rgb(187, 197, 194); min-height: 100vh; padding: 20px;">
+
 <h1>Welcome, <%= User.find(session[:user_id]).email if session[:user_id] %>!</h1>
 
 <div class="content-container">
   <div class="column">
     <h2>Lessons</h2>
     <ul>
-      <% Lesson.all.each do |lesson| %>
-        <li><%= link_to lesson.title, lesson_path(lesson) %></li>
-      <% end %>
+      <% Lesson.limit(10).each do |lesson| %>
+  <li><%= link_to lesson.title, lesson_path(lesson) %></li>
+<% end %>
     </ul>
   </div>
 
@@ -19,7 +21,7 @@
     </ul>
   </div>
 </div>
-
+</div>
 
 <style>
   .logout-button {
