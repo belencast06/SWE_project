@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :logged_in?
 
   before_action :require_login
-  
+
   # Get the current user based on session
   def current_user
     @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
@@ -18,7 +18,13 @@ class ApplicationController < ActionController::Base
   end
 
   # Redirect if not logged in
+  # Rails.logger.info "🚨 require_login triggered on: #{request.path}"
   def require_login
-    redirect_to login_path, alert: "Please log in first" unless logged_in?
+    unless logged_in?
+      unless request.path.in?([ login_path, signup_path ])
+        flash[:alert] ||= "Please log in first"
+        redirect_to login_path
+      end
+    end
   end
 end

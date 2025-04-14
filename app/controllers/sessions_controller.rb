@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
   skip_before_action :require_login, only: [ :new, :create ]
 
   def new
-    # show login form
+    flash.clear
   end
 
   def create

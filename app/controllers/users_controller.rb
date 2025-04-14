@@ -6,11 +6,16 @@ class UsersController < ApplicationController
   end
 
   def create
+    puts "CREATE ACTION HIT"
+
     @user = User.new(user_params)
     if @user.save
+      puts "User created successfully"
       session[:user_id] = @user.id
-      redirect_to root_path, notice: "Signed up successfully!"
+      redirect_to home_path, notice: "Signed up successfully!"
     else
+      puts "User creation failed"
+      puts @user.errors.full_messages
       render :new, status: :unprocessable_entity
     end
   end
