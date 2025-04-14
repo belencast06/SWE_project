@@ -1,22 +1,54 @@
-<h1 class="text-center">Sign Up</h1>
+<style>
+  .signup-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: normal;
+    text-align: center;
+  }
 
-<div class="container mt-4" style="max-width: 500px;">
-  <%= form_with url: signup_path, local: true do |form| %>
-    <div class="mb-3">
-      <%= form.label :email, class: "form-label" %>
-      <%= form.text_field :email, class: "form-control" %>
-    </div>
+  .form-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: rgb(78, 76, 76);
+    letter-spacing: 0.5px;
+  }
 
-    <div class="mb-3">
-      <%= form.label :password, class: "form-label" %>
-      <%= form.password_field :password, class: "form-control" %>
-    </div>
+  .btn-primary {
+    background-color: rgb(97, 104, 102);
+    border-color: rgb(77, 81, 80);
+    font-family: 'IBM Plex Mono', monospace;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
 
-    <div class="mb-3">
-      <%= form.label :password_confirmation, "Confirm Password", class: "form-label" %>
-      <%= form.password_field :password_confirmation, class: "form-control" %>
-    </div>
+  .btn-primary:hover {
+    background-color: #357ab8;
+    transform: translateY(-2px);
+  }
+</style>
 
-    <%= form.submit "Sign Up", class: "btn btn-primary w-100" %>
-  <% end %>
+<div class="login-page min-vh-100 d-flex align-items-center justify-content-center" style="background-color: rgb(187, 197, 194);">
+  <div class="card bg-light text-dark p-4" style="min-width: 350px;">
+    <h2 class="signup-title mb-4">Sign Up</h2>
+
+    <%= form_with url: signup_path, local: true do |form| %>
+      <div class="mb-3">
+        <%= form.label :email, class: "form-label" %>
+        <%= form.text_field :email, class: "form-control", required: true %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :password, class: "form-label" %>
+        <%= form.password_field :password, class: "form-control", required: true %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :password_confirmation, "Confirm Password", class: "form-label" %>
+        <%= form.password_field :password_confirmation, class: "form-control", required: true %>
+      </div>
+
+      <div class="d-grid">
+        <%= form.submit "Create Account", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
 </div>
