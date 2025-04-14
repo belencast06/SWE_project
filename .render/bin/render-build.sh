@@ -10,3 +10,5 @@ bundle exec rake assets:precompile
 
 # Run database migrations
 bundle exec rake db:migrate
+
+bundle exec rake db:migrate
