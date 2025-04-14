@@ -1,70 +1,100 @@
-<div style="background-color: rgb(187, 197, 194); min-height: 100vh; padding: 20px;">
+<div style="background-color: rgb(187, 197, 194); min-height: 100vh; padding: 30px;">
+<h1 class="animated-welcome-title">
+  Welcome, <%= User.find(session[:user_id]).email if session[:user_id] %>!
+</h1>
 
-<h1>Welcome, <%= User.find(session[:user_id]).email if session[:user_id] %>!</h1>
-
-<div class="content-container">
-  <div class="column">
-    <h2>Lessons</h2>
-    <ul>
-      <% Lesson.limit(10).each do |lesson| %>
-  <li><%= link_to lesson.title, lesson_path(lesson) %></li>
-<% end %>
-    </ul>
+  <h3>Lessons</h3>
+  <div class="row">
+    <% Lesson.limit(10).each do |lesson| %>
+      <div class="col-md-6 mb-3">
+        <%= link_to lesson_path(lesson), class: "lesson-tile" do %>
+          <h5><%= lesson.title %></h5>
+          <p>Go to lesson</p>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 
-  <div class="column">
-    <h2>Forum</h2>
-    <ul>
-      <li><%= link_to "General Discussion", general_discussion_path %></li>
-      <li><%= link_to "Help & Support", help_support_path %></li>
-      <li><%= link_to "Off-Topic", off_topic_path %></li>
-    </ul>
+  <h3 class="mt-5">Forum</h3>
+  <div class="row">
+    <div class="col-md-4 mb-3">
+      <%= link_to general_discussion_path, class: "assessment-tile" do %>
+        <h5>General Discussion</h5>
+        <p>Talk about anything related to coding</p>
+      <% end %>
+    </div>
+    <div class="col-md-4 mb-3">
+      <%= link_to help_support_path, class: "assessment-tile" do %>
+        <h5>Help & Support</h5>
+        <p>Get help from the community</p>
+      <% end %>
+    </div>
+    <div class="col-md-4 mb-3">
+      <%= link_to off_topic_path, class: "assessment-tile" do %>
+        <h5>Off-Topic</h5>
+        <p>Chat about anything else</p>
+      <% end %>
+    </div>
   </div>
-</div>
 </div>
 
 <style>
-  .logout-button {
-    display: block;
-    margin-bottom: 20px;
-    color: white;
-    background-color: red;
-    padding: 10px 15px;
-    text-decoration: none;
-    border-radius: 5px;
-    width: fit-content;
-  }
+.lesson-tile, .assessment-tile {
+  display: block;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #333;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
 
-  .content-container {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 20px;
-  }
+.lesson-tile:hover, .assessment-tile:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
 
-  .column {
-    width: 40%;
-    text-align: center;
-    background: #f4f4f4;
-    padding: 20px;
-    border-radius: 10px;
-  }
+.lesson-tile h5, .assessment-tile h5 {
+  margin-bottom: 8px;
+  font-weight: 600;
+}
 
-  .column ul {
-    list-style: none;
-    padding: 0;
-  }
+.lesson-tile p, .assessment-tile p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #666;
+}
 
-  .column ul li {
-    margin: 10px 0;
-  }
+.mt-5 {
+  margin-top: 50px;
+}
+.animated-welcome-title {
+  font-family: 'JetBrains Mono', monospace;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid #000;
+  width: 0;
+  margin: 0 auto 40px;
+  text-align: center;
+  font-size: 2rem;
+  animation: typing 1.8s steps(25, end) forwards, blink 0.75s step-end 2, fadeCursor 0.5s ease 2.5s forwards;
+}
 
-  .column ul li a {
-    text-decoration: none;
-    color: #007BFF;
-    font-weight: bold;
-  }
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
 
-  .column ul li a:hover {
-    text-decoration: underline;
+@keyframes blink {
+  from, to { border-color: transparent; }
+  50% { border-color: black; }
+}
+
+@keyframes fadeCursor {
+  to {
+    border-right: 0;
+    border-right-color: transparent;
   }
+}
 </style>
