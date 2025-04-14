@@ -13,12 +13,24 @@ test:
   database: storage/test.sqlite3
 
 production:
-  url: <%= ENV['DATABASE_URL'] %>
-  adapter: postgresql
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  primary:
+    url: <%= ENV['DATABASE_URL'] %>
+    adapter: postgresql
+    pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   
-  # Add cable database configuration
+  # Add configurations for other databases
   cable:
+    url: <%= ENV['DATABASE_URL'] %>
+    adapter: postgresql
+    pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  
+  # If you're using solid_queue or solid_cache
+  queue:
+    url: <%= ENV['DATABASE_URL'] %>
+    adapter: postgresql
+    pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  
+  cache:
     url: <%= ENV['DATABASE_URL'] %>
     adapter: postgresql
     pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
