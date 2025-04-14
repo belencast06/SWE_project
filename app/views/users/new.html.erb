@@ -30,10 +30,10 @@
   <div class="card bg-light text-dark p-4" style="min-width: 350px;">
     <h2 class="signup-title mb-4">Sign Up</h2>
 
-    <%= form_with url: signup_path, local: true do |form| %>
+    <%= form_with model: @user, url: signup_path, local: true do |form| %>
       <div class="mb-3">
         <%= form.label :email, class: "form-label" %>
-        <%= form.text_field :email, class: "form-control", required: true %>
+        <%= form.email_field :email, class: "form-control", required: true %>
       </div>
 
       <div class="mb-3">
