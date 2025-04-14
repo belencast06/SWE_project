@@ -1,14 +1,64 @@
 <div style="background-color: rgb(187, 197, 194); min-height: 100vh; padding: 20px;">
-  <h1><%= @lesson.title %></h1>
-  <p><%= @lesson.content %></p>
+      <h1><%= @lesson.title %></h1>
+      <p><%= @lesson.content %></p>
 
-  <h3>Content Pages:</h3>
-  <ul>
-    <% @lesson.content_pages.each do |content_page| %>
-      <li><%= link_to content_page.title, lesson_content_page_path(@lesson, content_page) %></li>
-    <% end %>
-    <% @lesson.assessment_pages.each do |assessment_page| %>
-      <li><%= link_to assessment_page.title, lesson_assessment_page_path(@lesson, assessment_page) %></li>
-    <% end %>
-  </ul>
+      <h3>Lesson Content</h3>
+      <div class="row">
+        <% @lesson.content_pages.each do |content_page| %>
+          <div class="col-md-6 mb-3">
+            <%= link_to lesson_content_page_path(@lesson, content_page), class: "lesson-tile" do %>
+              <h5><%= content_page.title %></h5>
+              <p>View this section</p>
+            <% end %>
+          </div>
+        <% end %>
+
+        <% @lesson.assessment_pages.each do |assessment_page| %>
+          <div class="col-md-6 mb-3">
+            <%= link_to lesson_assessment_page_path(@lesson, assessment_page), class: "assessment-tile" do %>
+              <h5><%= assessment_page.title %></h5>
+              <p>Start the quiz</p>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+
+
+
+
+
 </div>
+
+
+
+
+
+
+<style>
+.lesson-tile, .assessment-tile {
+  display: block;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #333;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.lesson-tile:hover, .assessment-tile:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.lesson-tile h5, .assessment-tile h5 {
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.lesson-tile p, .assessment-tile p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #666;
+}
+</style>

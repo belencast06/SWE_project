@@ -1,7 +1,23 @@
 <div style="background-color: rgb(187, 197, 194); min-height: 100vh; padding: 20px;">
   <h1><%= @assessment_page.title %></h1>
   <p><%= @assessment_page.content %></p>
-  <%= link_to "Back to Lesson", lesson_path(@lesson) %>
+  <%= link_to "Back to Lesson", lesson_path(@lesson), class: "btn btn-secondary mb-4" %>
+
+  <h3>📝 Final Quiz</h3>
+
+  <p><strong>1. What is C++ primarily used for?</strong></p>
+  <form>
+    <label><input type="radio" name="q1"> Styling HTML elements</label><br>
+    <label><input type="radio" name="q1"> Creating web APIs</label><br>
+    <label><input type="radio" name="q1"> <strong>System programming and game development</strong></label>
+  </form>
+
+  <p><strong>2. Who created C++?</strong></p>
+  <form>
+    <label><input type="radio" name="q2"> Dennis Ritchie</label><br>
+    <label><input type="radio" name="q2"> James Gosling</label><br>
+    <label><input type="radio" name="q2"> <strong>Bjarne Stroustrup</strong></label>
+  </form>
 
   <div id="terminal-container" style="width: 80%; height: 300px; border: 1px solid black; z-index: 100; position: relative;"></div>
 </div>

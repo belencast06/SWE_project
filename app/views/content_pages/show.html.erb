@@ -1,7 +1,118 @@
-<div style="background-color: rgb(187, 197, 194); min-height: 100vh; padding: 20px;">
-  <h1><%= @content_page.title %></h1>
-  <p><%= @content_page.body %></p>
+<div class="lesson-content-wrapper">
+  <h1 class="lesson-heading"><%= @content_page.title %></h1>
 
-  <%= link_to "Back to Lesson Page", lesson_path(@content_page.lesson_id) %>
-  <h2>There will be content here</h2>
+  <% if @content_page.title.include?("Intro to C++") %>
+  <div class="lesson-section">
+    <h2>Welcome to C++</h2>
+    <p>
+      C++ is a general-purpose programming language developed by Bjarne Stroustrup. It offers powerful performance, low-level control, and supports multiple programming styles.
+    </p>
+  </div>
+
+  <div class="lesson-section card-tile">
+    <h4>💡 Did You Know?</h4>
+    <p>C++ is used to build modern operating systems, game engines (like Unreal Engine), browsers, and even embedded software.</p>
+  </div>
+
+  <div class="lesson-section">
+    <h2>Example: Hello World</h2>
+    <pre class="code-box">
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    cout << "Hello, World!";
+    return 0;
+}
+    </pre>
+  </div>
+
+  <div class="lesson-section card-tile">
+    <h4>Quick Check #1</h4>
+    <p>Which of the following is a key application of C++?</p>
+    <form>
+      <label><input type="radio" name="q1" value="wrong"> Designing mobile apps with Kotlin</label><br>
+      <label><input type="radio" name="q1" value="wrong"> Creating React components</label><br>
+      <label><input type="radio" name="q1" value="correct"> Building game engines and OS-level software</label><br><br>
+      <button type="button" onclick="checkAnswer('q1', 'feedback1')" class="btn btn-sm btn-outline-dark">Check Answer</button>
+      <p id="feedback1" class="feedback-text"></p>
+    </form>
+  </div>
+
+  <div class="lesson-section card-tile">
+    <h4>Quick Check #2</h4>
+    <p>Who created the C++ programming language?</p>
+    <form>
+      <label><input type="radio" name="q2" value="wrong"> Dennis Ritchie</label><br>
+      <label><input type="radio" name="q2" value="wrong"> James Gosling</label><br>
+      <label><input type="radio" name="q2" value="correct"> Bjarne Stroustrup</label><br><br>
+      <button type="button" onclick="checkAnswer('q2', 'feedback2')" class="btn btn-sm btn-outline-dark">Check Answer</button>
+      <p id="feedback2" class="feedback-text"></p>
+    </form>
+  </div>
+<% else %>
+  <div class="lesson-section">
+    <%= @content_page.body.html_safe %>
+  </div>
+<% end %>
+
+  <%= link_to "← Back to Lesson Page", lesson_path(@content_page.lesson_id), class: "btn btn-secondary mt-4" %>
 </div>
+
+<style>
+.lesson-content-wrapper {
+  background-color: rgb(187, 197, 194);
+  min-height: 100vh;
+  padding: 30px;
+}
+
+.lesson-heading {
+  font-family: 'JetBrains Mono', monospace;
+  margin-bottom: 25px;
+  font-weight: bold;
+}
+
+.lesson-section {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.card-tile {
+  border-left: 5px solid #007bff;
+}
+
+.code-box {
+  background: #f4f4f4;
+  padding: 15px;
+  border-radius: 8px;
+  font-family: monospace;
+  font-size: 0.95rem;
+}
+
+.feedback-text {
+  margin-top: 8px;
+  font-weight: 500;
+}
+</style>
+
+<script>
+function checkAnswer(name, feedbackId) {
+  const radios = document.getElementsByName(name);
+  let feedback = document.getElementById(feedbackId);
+  for (let i = 0; i < radios.length; i++) {
+    if (radios[i].checked) {
+      if (radios[i].value === "correct") {
+        feedback.innerText = "✅ Correct!";
+        feedback.style.color = "green";
+      } else {
+        feedback.innerText = "❌ Try again.";
+        feedback.style.color = "red";
+      }
+      break;
+    }
+  }
+}
+</script>
