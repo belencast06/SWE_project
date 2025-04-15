@@ -1,8 +1,4 @@
-Given("a user exists with email {string} and password {string}") do |email, password|
-  User.create(email: email, password: password, password_confirmation: password)
-end
-
-When("I visit the login page") do
+Given("the login page is displayed") do
   visit login_path
 end
 
@@ -10,18 +6,26 @@ When("I fill in {string} with {string}") do |field, value|
   fill_in field, with: value
 end
 
-When("I click {string}") do |button_text|
+When("I click the {string} button") do |button_text|
   click_button button_text
 end
 
-Then("I should see {string}") do |text|
-  expect(page).to have_content(text)
+When("I click the {string} link") do |link_text|
+  click_link link_text
 end
 
-Given("I am logged in as {string}") do |email|
-  user = User.find_by(email: email)
-  visit login_path
-  fill_in "Email", with: user.email
-  fill_in "Password", with: "password123"
-  click_button "Log in"
+Then("I should be redirected to the Home page") do
+  expect(current_path).to eq(home_path)
+end
+
+Then("I should see {string}") do |message|
+  expect(page).to have_content(message)
+end
+
+Then("I should be redirected back to the login page") do
+  expect(current_path).to eq(login_path)
+end
+
+Then("I should be on the sign-up page") do
+  expect(current_path).to eq(signup_path)
 end

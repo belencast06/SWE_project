@@ -9,6 +9,7 @@ Rails.application.configure do
   config.annotations.register_extensions('feature') { |tag| /#\s*(#{tag}):?\s*(.*)$/ }
 
   # Settings specified here will take precedence over those in config/application.rb.
+  # config.assets.css_compressor = nil
 
   # While tests run files are not watched, reloading is not necessary.
   config.enable_reloading = false
