@@ -1,5 +1,5 @@
 # features/step_definitions/forums_steps.rb
-
+#random edit for test
 # User login steps
 Given("I am a logged in user") do
   @user = User.create!(username: "testuser", email: "test@example.com", password: "password")
