@@ -1,15 +1,38 @@
 <h1>Lessons#index</h1>
 <p>Find me in app/views/lessons/index.html.erb</p>
 <div style="background-color: rgb(187, 197, 194); min-height: 100vh; padding: 20px;">
-  <h1>All Lessons</h1>
-  <p>Browse available lessons and get started learning.</p>
+  <h1>Learn C++</h1>
+  <p>Start with the basics and build your knowledge step-by-step.</p>
 
   <div class="row">
     <% @lessons.each do |lesson| %>
       <div class="col-md-6 mb-4">
         <%= link_to lesson_path(lesson), class: "lesson-tile" do %>
-          <h5><%= lesson.title %></h5>
-          <p><%= truncate(lesson.content, length: 100) %></p>
+          <h5>
+            <% case lesson.title %>
+              <% when "Lesson 1: Introduction to C++" %>
+                Lesson 1: Introduction to C++
+              <% when "Lesson 2: Variables in C++" %>
+                Lesson 2: Variables in C++
+              <% when "Lesson 3: Expressions in C++" %>
+                Lesson 3: Expressions in C++
+              <% else %>
+                <%= lesson.title %>
+            <% end %>
+          </h5>
+
+          <p>
+            <% case lesson.title %>
+              <% when "Lesson 1: Introduction to C++" %>
+                Learn the foundational elements of C++: syntax, structure, comments, operators, and the main function.
+              <% when "Lesson 2: Variables in C++" %>
+                Understand how to declare and use variables, data types, and naming conventions in C++.
+              <% when "Lesson 3: Expressions in C++" %>
+                Dive into arithmetic, logical, and relational expressions—how C++ evaluates and combines data.
+              <% else %>
+                <%= truncate(lesson.content, length: 100) %>
+            <% end %>
+          </p>
         <% end %>
       </div>
     <% end %>
