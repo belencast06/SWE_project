@@ -1,20 +1,20 @@
-Feature: Viewing a Lesson Page
-  As a user
-  I want to view a lesson
-  So that I can access its content pages and assessments
+Feature: Intro to C++ Lesson - Lesson Feature 
 
   Background:
-    Given a lesson exists with the title "Lesson 1" and content "Introduction to Lesson 1"
-  
-  Scenario: Viewing a lesson page
-    When I visit the lesson page for "Lesson 1"
-    Then I should see "Lesson 1"
-    And I should see "Introduction to Lesson 1"
+    Given I am a logged-in user
+    And I am on the Home page
 
-  Scenario: Viewing content pages of a lesson
-    When I visit the lesson page for "Lesson 1"
-    Then I should see a list of content pages
+  Scenario: Navigate to the Intro to C++ lesson
+    When I click on the "Intro to C++" lesson card
+    Then I should see "Intro to C++ - Introduction"
+    And I should see "Intro to C++ - Assessment"
 
-  Scenario: Viewing the assessment for a lesson
-    When I visit the lesson page for "Lesson 1"
-    Then I should see an assessment link
+  Scenario: View content section of Intro to C++
+    When I click on the "Intro to C++" lesson card
+    And I click on "View this section"
+    Then I should see lesson content for "Intro to C++ - Introduction"
+
+  Scenario: Start assessment for Intro to C++
+    When I click on the "Intro to C++" lesson card
+    And I click on "Start the quiz"
+    Then I should see the assessment page for "Intro to C++"
