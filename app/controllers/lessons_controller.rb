@@ -8,4 +8,7 @@ class LessonsController < ApplicationController
   def show
     @lesson = Lesson.find(params[:id])  # This fetches a lesson by its ID
   end
+  def index
+    @lessons = Lesson.all
+  end
 end
