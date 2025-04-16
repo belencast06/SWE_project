@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  get '/admin/cleanup_lessons', to: 'admin#cleanup_lessons'
-  get '/admin/seed_database', to: 'admin#seed_database'
 
   # Home Page
   get '/home', to: 'home#index', as: 'home'
