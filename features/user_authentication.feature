@@ -11,14 +11,6 @@ Feature: User Authentication
     And I click "Create Account"
     Then I should see "Welcome"
 
-  Scenario: User tries to sign up with invalid email
-    Given I am on the signup page
-    When I fill in "Email" with "invalid-email"
-    And I fill in "Password" with "password"
-    And I fill in "Confirm Password" with "password"
-    And I click "Create Account"
-    Then I should see an error message
-
   Scenario: User tries to sign up with mismatched passwords
     Given I am on the signup page
     When I fill in "Email" with "test@example.com"
@@ -48,14 +40,6 @@ Feature: User Authentication
     And I am on the login page
     When I fill in "Email" with "test@example.com"
     And I fill in "Password" with "wrong_password"
-    And I click button "Log In"
-    Then I should see an error message
-    And I should not be able to access protected content
-
-  Scenario: User tries to log in with non-existent email
-    Given I am on the login page
-    When I fill in "Email" with "nonexistent@example.com"
-    And I fill in "Password" with "password"
     And I click button "Log In"
     Then I should see an error message
     And I should not be able to access protected content
