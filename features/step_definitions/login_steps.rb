@@ -18,10 +18,6 @@ Then("I should be redirected to the Home page") do
   expect(current_path).to eq(home_path)
 end
 
-Then("I should see {string}") do |message|
-  expect(page).to have_content(message)
-end
-
 Then("I should be redirected back to the login page") do
   expect(current_path).to eq(login_path)
 end

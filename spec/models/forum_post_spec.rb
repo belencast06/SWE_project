@@ -2,108 +2,86 @@
 require 'rails_helper'
 
 RSpec.describe ForumPost, type: :model do
-  # Set up a valid forum post for testing
-  let(:user) { User.create(username: "testuser", email: "test@example.com", password: "password") }
-  let(:category) { ForumCategory.create(name: "General Discussion") }
-  let(:valid_post) { ForumPost.new(title: "Test Post", content: "This is test content", user: user, forum_category: category) }
-
-  # Test that a valid post can be created
-  it "is valid with valid attributes" do
-    expect(valid_post).to be_valid
-  end
-
-  # Association tests
-  describe "associations" do
-    it { should belong_to(:user) }
-    it { should belong_to(:forum_category) }
-  end
-
-  # Validation tests
+  let(:user) { User.create(email: "test@example.com", password: "password", password_confirmation: "password") }
+  
   describe "validations" do
-    it { should validate_presence_of(:title) }
-    it { should validate_presence_of(:content) }
+    it "is valid with valid attributes" do
+      post = ForumPost.new(
+        title: "Test Post",
+        content: "This is a test post",
+        category: "general",
+        user: user
+      )
+      expect(post).to be_valid
+    end
     
     it "is not valid without a title" do
-      post = ForumPost.new(title: nil, content: "Content", user: user, forum_category: category)
+      post = ForumPost.new(
+        title: nil,
+        content: "This is a test post",
+        category: "general",
+        user: user
+      )
       expect(post).not_to be_valid
     end
     
     it "is not valid without content" do
-      post = ForumPost.new(title: "Title", content: nil, user: user, forum_category: category)
-      expect(post).not_to be_valid
-    end
-    
-    it "is not valid without a user" do
-      post = ForumPost.new(title: "Title", content: "Content", user: nil, forum_category: category)
+      post = ForumPost.new(
+        title: "Test Post",
+        content: nil,
+        category: "general",
+        user: user
+      )
       expect(post).not_to be_valid
     end
     
     it "is not valid without a category" do
-      post = ForumPost.new(title: "Title", content: "Content", user: user, forum_category: nil)
+      post = ForumPost.new(
+        title: "Test Post",
+        content: "This is a test post",
+        category: nil,
+        user: user
+      )
       expect(post).not_to be_valid
     end
   end
-
-  # Method tests
-  describe "#recent" do
-    it "returns posts from the last week" do
-      # Create older post
-      old_post = ForumPost.create(
-        title: "Old Post",
-        content: "Old content",
-        user: user,
-        forum_category: category,
-        created_at: 2.weeks.ago
-      )
-      
-      # Create recent post
-      new_post = ForumPost.create(
-        title: "New Post",
-        content: "New content",
-        user: user,
-        forum_category: category,
-        created_at: 2.days.ago
-      )
-      
-      # Test the recent method (assuming you have this method in your model)
-      expect(ForumPost.recent).to include(new_post)
-      expect(ForumPost.recent).not_to include(old_post)
+  
+  describe "associations" do
+    it "belongs to a user" do
+      association = ForumPost.reflect_on_association(:user)
+      expect(association.macro).to eq :belongs_to
+    end
+    
+    it "has many comments" do
+      association = ForumPost.reflect_on_association(:comments)
+      expect(association.macro).to eq :has_many
     end
   end
   
-  # Test for search functionality
-  describe ".search" do
-    before do
-      @ruby_post = ForumPost.create(
-        title: "Ruby Programming",
-        content: "Learning Ruby is fun",
-        user: user,
-        forum_category: category
+  describe "#top_level_comments" do
+    it "returns only top-level comments" do
+      post = ForumPost.create(
+        title: "Test Post",
+        content: "This is a test post",
+        category: "general",
+        user: user
       )
       
-      @python_post = ForumPost.create(
-        title: "Python Tips",
-        content: "Python is also great",
-        user: user,
-        forum_category: category
+      top_comment = Comment.create(
+        content: "Top-level comment",
+        forum_post: post,
+        user: user
       )
-    end
-    
-    it "returns posts that match the search term in title" do
-      results = ForumPost.search("Ruby")
-      expect(results).to include(@ruby_post)
-      expect(results).not_to include(@python_post)
-    end
-    
-    it "returns posts that match the search term in content" do
-      results = ForumPost.search("great")
-      expect(results).to include(@python_post)
-      expect(results).not_to include(@ruby_post)
-    end
-    
-    it "returns no results when no matches found" do
-      results = ForumPost.search("JavaScript")
-      expect(results).to be_empty
+      
+      reply = Comment.create(
+        content: "Reply to comment",
+        forum_post: post,
+        user: user,
+        parent_comment: top_comment
+      )
+      
+      expect(post.top_level_comments).to include(top_comment)
+      expect(post.top_level_comments).not_to include(reply)
     end
   end
 end

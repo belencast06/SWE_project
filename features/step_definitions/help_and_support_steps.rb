@@ -37,10 +37,6 @@ When("I click on the post titled {string}") do |title|
   click_link(title)
 end
 
-Then("I should see {string}") do |text|
-  expect(page).to have_content(text)
-end
-
 Then("I should be on the Home page") do
   expect(current_path).to eq(home_path)
 end
