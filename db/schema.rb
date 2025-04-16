@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_26_081857) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_15_234043) do
   create_table "assessment_pages", force: :cascade do |t|
     t.string "title"
     t.text "content"
@@ -18,6 +18,18 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_26_081857) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["lesson_id"], name: "index_assessment_pages_on_lesson_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "content", null: false
+    t.integer "user_id", null: false
+    t.integer "forum_post_id", null: false
+    t.integer "parent_comment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["forum_post_id"], name: "index_comments_on_forum_post_id"
+    t.index ["parent_comment_id"], name: "index_comments_on_parent_comment_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "content_pages", force: :cascade do |t|
@@ -54,6 +66,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_26_081857) do
   end
 
   add_foreign_key "assessment_pages", "lessons"
+  add_foreign_key "comments", "comments", column: "parent_comment_id"
+  add_foreign_key "comments", "forum_posts"
+  add_foreign_key "comments", "users"
   add_foreign_key "content_pages", "lessons"
   add_foreign_key "forum_posts", "users"
 end

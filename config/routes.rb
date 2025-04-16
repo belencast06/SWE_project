@@ -26,6 +26,11 @@ Rails.application.routes.draw do
 
   resources :forum_posts
 
+  # config/routes.rb (add these lines to your existing routes)
+  resources :forum_posts do
+    resources :comments, only: [:create, :destroy]
+  end
+
   get "assessment_pages/show"
   get "forum_posts/index"
   get "forum_posts/show"
@@ -35,7 +40,7 @@ Rails.application.routes.draw do
   get "lessons/index"
   get "lessons/show"
 
-
+  
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

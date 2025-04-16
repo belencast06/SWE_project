@@ -1,0 +1,9 @@
+<div id="comments-container">
+  <% if post.comments.top_level.any? %>
+    <% post.comments.top_level.each do |comment| %>
+      <%= render 'comments/comment', comment: comment, depth: 0 %>
+    <% end %>
+  <% else %>
+    <p class="text-muted">No comments yet. Be the first to comment!</p>
+  <% end %>
+</div>

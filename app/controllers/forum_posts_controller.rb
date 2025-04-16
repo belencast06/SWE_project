@@ -31,6 +31,17 @@ class ForumPostsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+
+  def destroy
+    @post = ForumPost.find(params[:id])
+    
+    if @post.user_id == current_user.id
+      @post.destroy
+      redirect_to forum_posts_path(category: @post.category), notice: 'Post deleted successfully!'
+    else
+      redirect_to forum_post_path(@post), alert: 'You can only delete your own posts!'
+    end
+  end
   
   private
   
