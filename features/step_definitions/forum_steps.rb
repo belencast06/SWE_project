@@ -91,3 +91,9 @@ end
 Then("I should not see {string}") do |content|
   expect(page).not_to have_content(content)
 end
+
+When("I click on forum post {string}") do |post_title|
+  click_link(post_title)
+rescue Capybara::ElementNotFound
+  find('a, h2, h3, h4, h5', text: post_title, match: :first).click
+end

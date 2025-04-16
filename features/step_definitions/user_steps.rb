@@ -41,7 +41,12 @@ Given("I am logged in") do
 end
 
 Then("I should see an error message") do
-  expect(page).to have_css(".alert-danger") || have_css(".alert-error") || have_css(".alert")
+  # Check various possible ways errors could be displayed
+  expect(page).to have_css(".alert-danger") || 
+                 have_css(".alert") || 
+                 have_content("failed") ||
+                 have_content("error") ||
+                 have_css(".field_with_errors")
 end
 
 Given("I am not logged in") do

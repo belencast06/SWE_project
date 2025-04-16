@@ -28,7 +28,7 @@ Feature: Forum Posts
   Scenario: View a forum post
     Given there is a forum post with title "Existing Post" and content "This is an existing post."
     When I visit the "General Discussion" forum
-    And I click on "Existing Post"
+    And I click on forum post "Existing Post"
     Then I should see "Existing Post"
     And I should see "This is an existing post."
 

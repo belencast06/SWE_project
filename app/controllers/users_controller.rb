@@ -16,6 +16,7 @@ class UsersController < ApplicationController
     else
       puts "User creation failed"
       puts @user.errors.full_messages
+      flash.now[:alert] = "Sign up failed: #{@user.errors.full_messages.join(', ')}"
       render :new, status: :unprocessable_entity
     end
   end
